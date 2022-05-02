@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pet Adoption Agency!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>All the Pets</h1>
+
+    <ul>
+        {% for pet in pets %}
+
+        {% if pet.photo_url %}
+        <div>
+            <img src="{{pet.photo_url}}", width="300", height="400">
+        </div>
+        {% endif %}
+
+        <li>
+            <a href="/{{pet.id}}"> 
+                <p class="text-info"> 
+                    {{pet.name}} {% if pet.available %} <b>is available!</b> {% endif %} 
+                </p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/add" class="btn btn-primary">Add a Pet</a>
+</body>
+
+
+
+
+</html>

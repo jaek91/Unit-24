@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Info about {{pet.name}} </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+
+<body>
+    <h1>Info on {{pet.name}}</h1>
+
+    {% if pet.photo_url %} 
+    <div>
+        <img src="{{pet.photo_url}}" class= "img-fluid" width="250", height="350">
+    </div>
+    {% endif %}
+
+    <div>
+      <ul>
+          <li>Age: {{pet.age}}</li>
+          <li>Notes: {{pet.notes}}</li>
+      </ul>
+    </div>
+
+    <h2>Update info on {{pet.name}} </h2>
+    <form id="pet-edit" method="POST">
+        {{ form.hidden_tag() }}
+      
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        <div>
+          {{ field.label }}
+          {{ field }}
+          <p>
+            {% for error in field.errors %}
+              <b class="text-danger">{{ error }}</b>
+            {% endfor %}
+          </p>
+        </div>
+        {% endfor %}
+      
+        <button type="submit", class="btn btn-primary">Update Info</button>
+    </form>
+</body>
+
+</html>
